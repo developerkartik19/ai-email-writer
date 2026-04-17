@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MailCraft AI — Professional Email Writer</title>
+  <meta name="description" content="Generate polished, professional emails instantly with AI. Free email writing assistant powered by Claude." />
+  
+  <!-- Google Fonts: Elegant pairing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== NOISE TEXTURE OVERLAY ===================== -->
+  <div class="noise-overlay"></div>
+
+  <!-- ===================== ANIMATED BACKGROUND ===================== -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <header class="site-header">
+    <nav class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-mark">M</div>
+        <span class="logo-text">MailCraft <em>AI</em></span>
+      </div>
+      <div class="nav-links">
+        <a href="#how-it-works" class="nav-link">How it works</a>
+        <a href="#generator" class="nav-cta">Try for free</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================== HERO SECTION ===================== -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i data-lucide="sparkles" class="badge-icon"></i>
+        <span>Powered by Claude AI</span>
+      </div>
+      <h1 class="hero-title">
+        Write emails<br />
+        <em>worth reading.</em>
+      </h1>
+      <p class="hero-subtitle">
+        From job applications to business proposals — generate polished,
+        context-aware emails in seconds. No templates. Just quality.
+      </p>
+      <a href="#generator" class="hero-btn">
+        <span>Start Writing</span>
+        <i data-lucide="arrow-down" class="btn-icon"></i>
+      </a>
+    </div>
+
+    <!-- Floating example cards -->
+    <div class="hero-cards" aria-hidden="true">
+      <div class="float-card card-a">
+        <div class="card-tag">Job Application</div>
+        <div class="card-preview">Dear Hiring Manager, I am writing to express my strong interest in…</div>
+      </div>
+      <div class="float-card card-b">
+        <div class="card-tag">Business Proposal</div>
+        <div class="card-preview">Following our recent discussion, I'd like to present a partnership opportunity…</div>
+      </div>
+      <div class="float-card card-c">
+        <div class="card-tag">Leave Request</div>
+        <div class="card-preview">I would like to formally request three days of annual leave starting…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section class="how-it-works" id="how-it-works" aria-label="How it works">
+    <div class="section-container">
+      <p class="section-eyebrow">The Process</p>
+      <h2 class="section-title">Three steps to inbox-ready</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon"><i data-lucide="file-pen"></i></div>
+          <h3>Describe Your Email</h3>
+          <p>Tell us the purpose, recipient, and tone. Add any key points you want to cover.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon"><i data-lucide="cpu"></i></div>
+          <h3>AI Crafts It</h3>
+          <p>Our Claude-powered engine writes a polished, grammatically perfect email tailored to your context.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon"><i data-lucide="send"></i></div>
+          <h3>Copy & Send</h3>
+          <p>Review, copy to clipboard with one click, and send with confidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MAIN GENERATOR ===================== -->
+  <section class="generator-section" id="generator" aria-label="Email Generator">
+    <div class="generator-container">
+      
+      <!-- Left Panel: Form -->
+      <div class="form-panel">
+        <div class="panel-header">
+          <h2>Compose Your Email</h2>
+          <p>Fill in the details below and let AI do the rest.</p>
+        </div>
+
+        <div class="form-body" id="emailForm">
+
+          <!-- Email Purpose -->
+          <div class="form-group" id="group-purpose">
+            <label for="purpose" class="form-label">
+              <i data-lucide="target"></i>
+              Email Purpose <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="purpose"
+              class="form-input"
+              placeholder="e.g., Job application for Senior Developer role"
+              maxlength="500"
+              autocomplete="off"
+            />
+            <span class="field-hint">Be specific for better results</span>
+            <span class="field-error" id="error-purpose"></span>
+          </div>
+
+          <!-- Recipient Type -->
+          <div class="form-group" id="group-recipient">
+            <label for="recipientType" class="form-label">
+              <i data-lucide="user-round"></i>
+              Recipient Type <span class="required">*</span>
+            </label>
+            <div class="select-wrapper">
+              <select id="recipientType" class="form-select">
+                <option value="" disabled selected>Select recipient…</option>
+                <optgroup label="Workplace">
+                  <option value="Boss / Manager">Boss / Manager</option>
+                  <option value="HR Department">HR Department</option>
+                  <option value="Colleague">Colleague</option>
+                  <option value="Team Member">Team Member</option>
+                  <option value="Recruiter">Recruiter</option>
+                </optgroup>
+                <optgroup label="Business">
+                  <option value="Client">Client</option>
+                  <option value="Potential Business Partner">Potential Business Partner</option>
+                  <option value="Vendor / Supplier">Vendor / Supplier</option>
+                  <option value="Investor">Investor</option>
+                </optgroup>
+                <optgroup label="Academic">
+                  <option value="Professor / Teacher">Professor / Teacher</option>
+                  <option value="University Admission Office">University Admission Office</option>
+                  <option value="Thesis Supervisor">Thesis Supervisor</option>
+                </optgroup>
+                <optgroup label="Personal">
+                  <option value="Friend">Friend</option>
+                  <option value="Family Member">Family Member</option>
+                </optgroup>
+                <optgroup label="Other">
+                  <option value="Government Official">Government Official</option>
+                  <option value="Customer Support">Customer Support</option>
+                  <option value="General / Unknown">General / Unknown</option>
+                </optgroup>
+              </select>
+              <i data-lucide="chevron-down" class="select-arrow"></i>
+            </div>
+            <span class="field-error" id="error-recipient"></span>
+          </div>
+
+          <!-- Tone Selector -->
+          <div class="form-group" id="group-tone">
+            <label class="form-label">
+              <i data-lucide="sliders-horizontal"></i>
+              Tone <span class="required">*</span>
+            </label>
+            <div class="tone-grid">
+              <label class="tone-pill">
+                <input type="radio" name="tone" value="formal" />
+                <span>
+                  <i data-lucide="briefcase"></i>
+                  Formal
+                </span>
+              </label>
+              <label class="tone-pill">
+                <input type="radio" name="tone" value="professional" checked />
+                <span>
+                  <i data-lucide="star"></i>
+                  Professional
+                </span>
+              </label>
+              <label class="tone-pill">
+                <input type="radio" name="tone" value="friendly" />
+                <span>
+                  <i data-lucide="smile"></i>
+                  Friendly
+                </span>
+              </label>
+              <label class="tone-pill">
+                <input type="radio" name="tone" value="persuasive" />
+                <span>
+                  <i data-lucide="zap"></i>
+                  Persuasive
+                </span>
+              </label>
+              <label class="tone-pill">
+                <input type="radio" name="tone" value="apologetic" />
+                <span>
+                  <i data-lucide="heart-handshake"></i>
+                  Apologetic
+                </span>
+              </label>
+              <label class="tone-pill">
+                <input type="radio" name="tone" value="grateful" />
+                <span>
+                  <i data-lucide="gift"></i>
+                  Grateful
+                </span>
+              </label>
+            </div>
+            <span class="field-error" id="error-tone"></span>
+          </div>
+
+          <!-- Key Points -->
+          <div class="form-group">
+            <label for="keyPoints" class="form-label">
+              <i data-lucide="list-checks"></i>
+              Key Points
+              <span class="optional-tag">Optional</span>
+            </label>
+            <textarea
+              id="keyPoints"
+              class="form-textarea"
+              placeholder="- Mention 5 years of experience&#10;- Reference the project we discussed&#10;- Ask for a meeting next week"
+              maxlength="1000"
+              rows="4"
+            ></textarea>
+            <span class="field-hint">Add bullet points or phrases you want included</span>
+          </div>
+
+          <!-- Sender Name -->
+          <div class="form-group">
+            <label for="senderName" class="form-label">
+              <i data-lucide="pen-line"></i>
+              Your Name
+              <span class="optional-tag">Optional</span>
+            </label>
+            <input
+              type="text"
+              id="senderName"
+              class="form-input"
+              placeholder="e.g., Kartiki Sharma"
+              maxlength="100"
+            />
+          </div>
+
+          <!-- Submit Button -->
+          <button class="generate-btn" id="generateBtn" type="button">
+            <span class="btn-default">
+              <i data-lucide="sparkles"></i>
+              Generate Email
+            </span>
+            <span class="btn-loading" hidden>
+              <span class="spinner"></span>
+              Crafting your email…
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Panel: Output -->
+      <div class="output-panel" id="outputPanel">
+        
+        <!-- Empty state -->
+        <div class="output-empty" id="outputEmpty">
+          <div class="empty-illustration">
+            <i data-lucide="mail"></i>
+          </div>
+          <h3>Your email will appear here</h3>
+          <p>Fill in the form and click "Generate Email" to get started.</p>
+        </div>
+
+        <!-- Error state -->
+        <div class="output-error" id="outputError" hidden>
+          <div class="error-icon"><i data-lucide="alert-triangle"></i></div>
+          <h3>Something went wrong</h3>
+          <p id="errorMessage">An unexpected error occurred. Please try again.</p>
+          <button class="retry-btn" id="retryBtn">
+            <i data-lucide="refresh-cw"></i>
+            Try Again
+          </button>
+        </div>
+
+        <!-- Result state -->
+        <div class="output-result" id="outputResult" hidden>
+          <div class="result-header">
+            <div class="result-meta">
+              <div class="result-badge" id="resultTone"></div>
+              <div class="result-badge secondary" id="resultRecipient"></div>
+            </div>
+            <div class="result-actions">
+              <button class="action-btn" id="regenerateBtn" title="Regenerate">
+                <i data-lucide="refresh-cw"></i>
+                <span>Regenerate</span>
+              </button>
+              <button class="action-btn" id="saveBtn" title="Save email">
+                <i data-lucide="bookmark"></i>
+                <span>Save</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Subject Line -->
+          <div class="email-subject-box">
+            <span class="subject-label">Subject</span>
+            <p class="subject-text" id="emailSubject"></p>
+          </div>
+
+          <!-- Email Body -->
+          <div class="email-body-box">
+            <span class="body-label">Message</span>
+            <div class="email-body-text" id="emailBody"></div>
+          </div>
+
+          <!-- Copy Button -->
+          <button class="copy-btn" id="copyBtn">
+            <i data-lucide="copy" id="copyIcon"></i>
+            <span id="copyText">Copy to Clipboard</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SAVED EMAILS DRAWER ===================== -->
+  <div class="saved-drawer" id="savedDrawer" hidden>
+    <div class="drawer-header">
+      <h3><i data-lucide="bookmark"></i> Saved Emails</h3>
+      <button class="drawer-close" id="closeDrawer"><i data-lucide="x"></i></button>
+    </div>
+    <div class="drawer-body" id="savedList">
+      <!-- Saved emails injected here by JS -->
+    </div>
+    <button class="clear-saved-btn" id="clearSaved">
+      <i data-lucide="trash-2"></i> Clear All
+    </button>
+  </div>
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+
+  <!-- Saved Email Viewer Modal -->
+  <div class="modal-overlay" id="modalOverlay" hidden>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h4 id="modalTitle">Saved Email</h4>
+        <button class="modal-close" id="modalClose"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-subject" id="modalSubject"></div>
+      <div class="modal-body" id="modalBody"></div>
+      <button class="copy-btn" id="modalCopyBtn">
+        <i data-lucide="copy"></i>
+        <span>Copy to Clipboard</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <div class="logo-mark">M</div>
+        <span>MailCraft AI</span>
+      </div>
+      <p class="footer-text">Built with Claude API · Your emails, perfected.</p>
+      <p class="footer-sub">© 2025 MailCraft AI. For portfolio & educational use.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== TOAST NOTIFICATION ===================== -->
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
