@@ -38,7 +38,7 @@ async function generateEmail(req, res) {
       });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });;
     const prompt = buildPrompt({ purpose, recipientType, tone, keyPoints, senderName });
     const result = await model.generateContent(prompt);
     const rawText = result.response.text().trim().replace(/```json\n?|\n?```/g, "").trim();
