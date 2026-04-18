@@ -11,7 +11,7 @@
 // Local:      "http://localhost:5000"
 // Render:     "https://your-app.onrender.com"
 // Railway:    "https://your-app.railway.app"
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://ai-email-writer-api.onrender.com" ;
 
 const API_ENDPOINT = `${API_BASE_URL}/api/generate-email`;
 
